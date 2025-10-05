@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:file_selector/file_selector.dart';
 import 'local_storage.dart';
+import 'login_screen.dart';
 
 const String BASE_URL = "http://91.107.184.128:8080";
 // Android emulator: 10.0.2.2
@@ -94,7 +95,7 @@ class _ChatScreenState extends State<ChatScreen> {
   // Pick and upload file
   Future<void> _uploadFile() async {
     try {
-      final typeGroup = XTypeGroup(label: 'documents', extensions: ['pdf']);
+      final typeGroup = XTypeGroup(label: 'documents', extensions: ['pdf', 'txt', 'docx', 'pptx', 'csv', 'xlsx', 'jpg', 'png', 'jpeg']);
       final XFile? file = await openFile(acceptedTypeGroups: [typeGroup]);
 
       if (file == null) return; // user cancelled
@@ -144,10 +145,9 @@ class _ChatScreenState extends State<ChatScreen> {
               onPressed: () async {
                 Navigator.of(context).pop();
                 await LocalStorage.logout();
-                Navigator.pushNamedAndRemoveUntil(
-                    context,
-                    '/login',
-                        (route) => false
+                Navigator.of(context).pushAndRemoveUntil(
+                  MaterialPageRoute(builder: (context) => LoginScreen()),
+                      (Route<dynamic> route) => false,
                 );
               },
               child: const Text("Logout", style: TextStyle(color: Colors.red)),
@@ -170,7 +170,7 @@ class _ChatScreenState extends State<ChatScreen> {
         children: [
           if (!isUser) ...[
             const CircleAvatar(
-              backgroundColor: Color(0xFF075E54),
+              backgroundColor: Color(0xFFB39102),
               radius: 16,
               child: Icon(Icons.smart_toy, color: Colors.white, size: 16),
             ),
@@ -208,7 +208,7 @@ class _ChatScreenState extends State<ChatScreen> {
           if (isUser) ...[
             const SizedBox(width: 8),
             const CircleAvatar(
-              backgroundColor: Color(0xFF075E54),
+              backgroundColor: Color(0xFFB39102),
               radius: 16,
               child: Icon(Icons.person, color: Colors.white, size: 16),
             ),
@@ -226,7 +226,7 @@ class _ChatScreenState extends State<ChatScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const CircleAvatar(
-            backgroundColor: Color(0xFF075E54),
+            backgroundColor: Color(0xFFB39102),
             radius: 16,
             child: Icon(Icons.smart_toy, color: Colors.white, size: 16),
           ),
@@ -280,21 +280,21 @@ class _ChatScreenState extends State<ChatScreen> {
     return Scaffold(
       backgroundColor: const Color(0xFFE5DDD5),
       appBar: AppBar(
-        backgroundColor: const Color(0xFF075E54),
+        backgroundColor: const Color(0xFFB39102),
         elevation: 1,
         title: Row(
           children: [
             const CircleAvatar(
               backgroundColor: Colors.white,
               radius: 18,
-              child: Icon(Icons.smart_toy, color: Color(0xFF075E54), size: 18),
+              child: Icon(Icons.smart_toy, color: Color(0xFFB39102), size: 18),
             ),
             const SizedBox(width: 12),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const Text(
-                  "Sangrah AI",
+                  "MDocs",
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 18,
@@ -401,13 +401,6 @@ class _ChatScreenState extends State<ChatScreen> {
               color: const Color(0xFFF0F0F0),
               child: Row(
                 children: [
-                  // Emoji button
-                  IconButton(
-                    icon: const Icon(Icons.emoji_emotions_outlined,
-                        color: Colors.grey, size: 24),
-                    onPressed: () {},
-                  ),
-
                   // Attachment button
                   IconButton(
                     icon: const Icon(Icons.attach_file,
@@ -441,7 +434,7 @@ class _ChatScreenState extends State<ChatScreen> {
                   const SizedBox(width: 8),
                   Container(
                     decoration: BoxDecoration(
-                      color: const Color(0xFF075E54),
+                      color: const Color(0xFFB39102),
                       borderRadius: BorderRadius.circular(24),
                     ),
                     child: IconButton(

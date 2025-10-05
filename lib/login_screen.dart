@@ -91,7 +91,7 @@ class _LoginScreenState extends State<LoginScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Login'),
-        backgroundColor: Colors.green[600],
+        backgroundColor: Colors.yellow[600],
       ),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
@@ -114,7 +114,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   : ElevatedButton(
                 onPressed: _sendOTP,
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.green[600],
+                  backgroundColor: Colors.yellow[600],
                   minimumSize: const Size(double.infinity, 50),
                 ),
                 child: const Text(
@@ -144,7 +144,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   : ElevatedButton(
                 onPressed: _verifyOTP,
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.green[600],
+                  backgroundColor: Colors.yellow[600],
                   minimumSize: const Size(double.infinity, 50),
                 ),
                 child: const Text(
