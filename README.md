@@ -1,3 +1,7 @@
+
+If you are getting an error in the app, try this URL and check: http://91.107.184.128:8080/. Otherwise, it will redirect to https, which may prevent the app from allowing access. 
+
+
 ## Backend
 https://github.com/vickychhetri/ha_ai_doc
 
